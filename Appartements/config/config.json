@@ -1,0 +1,10 @@
+{
+    "local": {
+      "secretkey": "MyServerSuperSecretKey-123454321AbCd-",
+      "dbUsername": "root",
+      "dbPassword": "jazzwalter",
+      "dbSchema": "2019-I14-APPARTEMENTEN",
+      "dbServer": "localhost",
+      "port": "3306"
+    }
+}
