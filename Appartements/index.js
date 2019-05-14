@@ -1,16 +1,16 @@
 const config = require("./config/config.json");
 const express = require("express");
 const bodyParser = require("body-parser");
-const apiv1 = require("./routes/apiv1");
+//const apiv1 = require("./routes/apiv1");
 const user = require("./routes/user");
-const auth = require("./routes/auth");
-const logger = require("tracer").dailyfile({
-  root: "./logs",
-  maxLogFiles: 10,
-  allLogsFileName: "movies",
-  format: "{{timestamp}} <{{title}}> {{message}} (in {{file}}:{{line}})",
-  dateformat: "HH:MM:ss.L"
-});
+//const auth = require("./routes/auth");
+// const logger = require("tracer").dailyfile({
+//   root: "./logs",
+//   maxLogFiles: 10,
+//   allLogsFileName: "movies",
+//   format: "{{timestamp}} <{{title}}> {{message}} (in {{file}}:{{line}})",
+//   dateformat: "HH:MM:ss.L"
+// });
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,10 +23,10 @@ app.all("*", function(req, res, next) {
 });
 
 // Routing without JWT
-app.use("/auth", auth);
+//app.use("/auth", auth);
 
 // Routing protected by JWT
-app.use("/apiv1", apiv1);
+//app.use("/apiv1", apiv1);
 app.use("/user", user);
 
 // Optional log error
@@ -46,7 +46,7 @@ app.use(errorLoggerHandler);
 app.use(errorResponseHandler);
 
 // ECMA 6
-const port = process.env.PORT || config.remote.port;
+const port = process.env.PORT || config.local.port;
 const server = app.listen(port, () => {
   console.log(
     "The app is now running at server adress:  " + server.address().port

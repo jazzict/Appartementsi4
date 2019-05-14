@@ -5,6 +5,6 @@
       "dbPassword": "jazzwalter",
       "dbSchema": "2019-I14-APPARTEMENTEN",
       "dbServer": "localhost",
-      "port": "3306"
+      "port": "8080"
     }
 }
