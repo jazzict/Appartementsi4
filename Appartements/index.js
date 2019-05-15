@@ -24,20 +24,20 @@ app.all("*", function(req, res, next) {
 app.use("/api", require('./routes/api'));
 
 // Optional log error
-function errorLoggerHandler(err, req, res, next) {
-  logger.error("%s", err.message);
-  next(err);
-}
+// function errorLoggerHandler(err, req, res, next) {
+//   logger.error("%s", err.message);
+//   next(err);
+// }
 
-// Set default error handler
-function errorResponseHandler(err, req, res, next) {
-  res.status(500);
-  res.json({ mgs: "Go, you hacker!" });
-}
+// // Set default error handler
+// function errorResponseHandler(err, req, res, next) {
+//   res.status(500);
+//   res.json({ mgs: "Go, you hacker!" });
+// }
 
-//Register the error handlers
-app.use(errorLoggerHandler);
-app.use(errorResponseHandler);
+// //Register the error handlers
+// app.use(errorLoggerHandler);
+// app.use(errorResponseHandler);
 
 // ECMA 6
 const port = process.env.PORT || config.local.port;

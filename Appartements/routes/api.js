@@ -1,10 +1,12 @@
 const express = require("express");
-//const assert = require("assert");
+const assert = require("assert");
 const router = express.Router();
+const bodyParser = require("body-parser")
 //const Users = require("../models/users");
 const db = require('../db/mysql-connector')
 //const jwt = require("../helpers/jwt");
-const Appartments = require('../models/appartements')
+const Appartments = require('../models/appartments')
+
 
 // Get all users
 router.get("/user", function(req, res, next){
@@ -31,7 +33,7 @@ router.get("/user", function(req, res, next){
       });
 
     }catch{
-        next(new Error("Gaat fout"))
+        next(new Error("Get users went wrong"))
     }
 })
 
@@ -58,7 +60,7 @@ router.get("/appartments", function(req, res, next){
       });
 
     }catch{
-        next(new Error("Gaat fout"))
+        next(new Error("Get appartments went wrong"))
     }
 })
 
@@ -66,17 +68,19 @@ router.get("/appartments", function(req, res, next){
 // Post new appartment
 //
 router.post("/appartments", function(req, res, next) {
-  //const appartment = req.body || {};
-  const appartment = new Appartment(req.body.description, req.body.streetaddress, req.body.postalcode, req.body.city, req.body.userid)
-
+  
+  const appartment = new Appartments(req.body.description, req.body.streetaddress, req.body.postalcode, req.body.city, 1)
+  console.log(appartment)
     try{
+      console.log("2")
         // Construct query object
         const query = {
-        sql: "INSERT INTO apartment (description, streetaddress, postalcode, city, userid) VALUES (?,?,?,?,?)",
-        values: [appartment.description, appartement.streetaddress, appartement.postalcode, appartement.city, 1],
+        sql: "INSERT INTO `apartment` (Description, StreetAddress, PostalCode, City, UserId) VALUES ('testjazz','test','test','test',1)",
+        values: ["test", "test", "test", "test", 1],
         timeout: 2000
       };
   
+      console.log("3")
       // Perform query
       db.query(query, (err, rows, fields) => {
 
@@ -90,7 +94,7 @@ router.post("/appartments", function(req, res, next) {
       });
 
     }catch{
-        next(new Error("Gaat fout"))
+        next(new Error("Creating an appartment went wrong"))
     }});
 
 module.exports = router;

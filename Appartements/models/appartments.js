@@ -1,4 +1,4 @@
-class Appartements{
+class Appartments{
     
     constructor(description, streetaddress, postalcode, city, userid){
         this.description = this.validate(description),
@@ -15,4 +15,4 @@ class Appartements{
 
 }
 
-module.exports = Appartements
+module.exports = Appartments
