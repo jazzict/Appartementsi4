@@ -2,15 +2,9 @@ const config = require("./config/config.json");
 const express = require("express");
 const bodyParser = require("body-parser");
 //const apiv1 = require("./routes/apiv1");
-const user = require("./routes/user");
+const user = require("./routes/api");
 //const auth = require("./routes/auth");
-// const logger = require("tracer").dailyfile({
-//   root: "./logs",
-//   maxLogFiles: 10,
-//   allLogsFileName: "movies",
-//   format: "{{timestamp}} <{{title}}> {{message}} (in {{file}}:{{line}})",
-//   dateformat: "HH:MM:ss.L"
-// });
+const logger = require("tracer").colorConsole();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,7 +12,7 @@ app.use(bodyParser.json());
 
 // Middelware, logging voor alle request
 app.all("*", function(req, res, next) {
-  logger.info("%s", req.hostname);
+  logger.info("%s", req.hostname); 
   next();
 });
 
@@ -27,7 +21,7 @@ app.all("*", function(req, res, next) {
 
 // Routing protected by JWT
 //app.use("/apiv1", apiv1);
-app.use("/user", user);
+app.use("/api", require('./routes/api'));
 
 // Optional log error
 function errorLoggerHandler(err, req, res, next) {
@@ -41,7 +35,7 @@ function errorResponseHandler(err, req, res, next) {
   res.json({ mgs: "Go, you hacker!" });
 }
 
-// Register the error handlers
+//Register the error handlers
 app.use(errorLoggerHandler);
 app.use(errorResponseHandler);
 

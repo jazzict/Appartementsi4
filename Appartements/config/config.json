@@ -1,10 +1,10 @@
 {
     "local": {
       "secretkey": "MyServerSuperSecretKey-123454321AbCd-",
-      "dbUsername": "root",
-      "dbPassword": "jazzwalter",
-      "dbSchema": "2019-I14-APPARTEMENTEN",
-      "dbServer": "localhost",
+      "dbUsername": "2019-I14",
+      "dbPassword": "2019-I14",
+      "dbSchema": "2019-i14-appartementen",
+      "dbServer": "coolsma.synology.me",
       "port": "8080"
     }
 }
