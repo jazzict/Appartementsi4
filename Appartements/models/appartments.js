@@ -1,17 +1,21 @@
 class Appartments{
     
     constructor(description, streetaddress, postalcode, city, userid){
-        this.description = this.validate(description),
-        this.streetaddress = this.validate(streetaddress),
-        this.postalcode = this.validate(postalcode),
-        this.city = this.validate(city),
-        this.userid = this.validate(userid)
+       this.description = description,
+       this.streetaddress = streetaddress,
+       this.postalcode = this.validatePostalCode(postalcode),
+       this.city = city,
+       this.userid = userid
     }
 
-      // Uitbreiden!
-    validate(item) {
-        return item;
+    validatePostalCode(postalcode) {
+    let regex = new RegExp("/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/")
+    if(regex.test(postalcode)){
+        return postalcode
+    }else{
+        throw new Error("Invalid PostalCode: " + postalcode);
     }
+  }
 
 }
 
